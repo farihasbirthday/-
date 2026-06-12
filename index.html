@@ -3,68 +3,228 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        .container {
-            text-align: center;
-            background: white;
-            padding: 60px 40px;
-            border-radius: 10px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
-            max-width: 600px;
-        }
-        
-        h1 {
-            color: #333;
-            margin-bottom: 20px;
-            font-size: 2.5em;
-        }
-        
-        p {
-            color: #666;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
-        
-        .button {
-            display: inline-block;
-            padding: 12px 30px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        
-        .button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.4);
-        }
-    </style>
+    <title>Happy Birthday Fariha ❤️</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 <body>
-    <div class="container">
-        <h1>🎉 Welcome!</h1>
-        <p>Your site is live and ready to go. This is a simple starter page built with HTML and CSS.</p>
-        <p>Edit this file to customize your site and make it your own!</p>
-        <a href="#" class="button">Get Started</a>
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="loading-screen">
+        <div class="loading-container">
+            <div class="sparkles-container">
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+                <div class="sparkle"></div>
+            </div>
+            <h1 class="loading-text">Something Special Is Coming...</h1>
+            <div class="progress-bar">
+                <div class="progress-fill"></div>
+            </div>
+        </div>
     </div>
+
+    <!-- Main Content -->
+    <main id="mainContent" class="hidden">
+        <!-- Hero Section -->
+        <section class="hero">
+            <canvas id="particleCanvas"></canvas>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span>H</span><span>a</span><span>p</span><span>p</span><span>y</span>
+                    <span>B</span><span>i</span><span>r</span><span>t</span><span>h</span><span>d</span><span>a</span><span>y</span>
+                    <span class="heart">❤️</span>
+                </h1>
+                <h2 class="hero-subtitle">Fariha</h2>
+                <p class="hero-text">A surprise made specially for you</p>
+                <button class="btn btn-primary" onclick="scrollToStory()">Open Your Surprise</button>
+            </div>
+            <div class="music-player">
+                <button id="musicBtn" class="music-btn">🎵</button>
+                <audio id="bgMusic" loop>
+                    <source src="https://assets.mixkit.co/active_storage/sfx/2747/2747-preview.mp3" type="audio/mpeg">
+                </audio>
+            </div>
+        </section>
+
+        <!-- Story Sections -->
+        <section class="story-section section-1" data-aos="fade-up">
+            <div class="story-content">
+                <h2>When you entered my life, everything became brighter.</h2>
+                <div class="stars-container">
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                    <div class="star"></div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section section-2" data-aos="fade-up">
+            <div class="story-content">
+                <h2>Every smile of yours feels like a blessing.</h2>
+                <div class="floating-hearts">
+                    <div class="heart-float">❤️</div>
+                    <div class="heart-float">❤️</div>
+                    <div class="heart-float">❤️</div>
+                    <div class="heart-float">❤️</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="story-section section-3" data-aos="fade-up">
+            <div class="story-content">
+                <h2>Every moment with you becomes a memory worth keeping.</h2>
+                <div class="photo-frames">
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                    <div class="frame"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Memory Gallery -->
+        <section class="gallery-section" data-aos="fade-up">
+            <h2>Our Beautiful Memories</h2>
+            <div class="gallery-grid">
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1506157786151-b8491531f063?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03bf1a9dba?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1494615853897-e6f0d7234b64?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1511379938547-c1f69b13d835?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+                <div class="gallery-item" onclick="openLightbox(this)">
+                    <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=400&h=400&fit=crop" alt="Memory">
+                    <div class="overlay">Click to view</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Lightbox -->
+        <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+            <div class="lightbox-content" onclick="event.stopPropagation()">
+                <span class="lightbox-close" onclick="closeLightbox()">&times;</span>
+                <img id="lightboxImage" src="" alt="">
+            </div>
+        </div>
+
+        <!-- Birthday Cake Section -->
+        <section class="cake-section" data-aos="fade-up">
+            <h2>Make A Wish! 🎂</h2>
+            <div class="cake-container">
+                <div class="cake">
+                    <div class="cake-layer cake-bottom"></div>
+                    <div class="cake-layer cake-middle"></div>
+                    <div class="cake-layer cake-top"></div>
+                    <div class="candles">
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                        <div class="candle">
+                            <div class="flame"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <button class="btn btn-primary" onclick="blowCandles()">Blow The Candles</button>
+            <p id="wishText" class="wish-text hidden">Make a Wish Fariha ✨</p>
+        </section>
+
+        <!-- Gift Box Section -->
+        <section class="gift-section" data-aos="fade-up">
+            <h2>A Special Gift For You 🎁</h2>
+            <div class="gift-container" onclick="openGift()">
+                <div class="gift-box">
+                    <div class="gift-top"></div>
+                    <div class="gift-body"></div>
+                    <div class="gift-ribbon"></div>
+                </div>
+                <button class="btn btn-primary">Open Gift</button>
+            </div>
+            <div id="giftMessage" class="gift-message hidden">
+                <p>You're The Best Gift Life Ever Gave Me ❤️</p>
+                <div class="gift-sparkles">
+                    <span>❤️</span>
+                    <span>✨</span>
+                    <span>🌹</span>
+                    <span>✨</span>
+                    <span>❤️</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sky Scene -->
+        <section class="sky-section" onclick="launchLantern()">
+            <div class="night-sky">
+                <div class="stars-sky"></div>
+                <div class="moon"></div>
+                <div class="shooting-star"></div>
+            </div>
+            <div class="sky-text">
+                <p>Tap anywhere to send your love to the sky 💕</p>
+            </div>
+            <div class="lanterns-container"></div>
+        </section>
+
+        <!-- Floating Love Notes -->
+        <section class="notes-section">
+            <h2>Messages of Love 💌</h2>
+            <div class="notes-container"></div>
+        </section>
+
+        <!-- Letter Section -->
+        <section class="letter-section" data-aos="fade-up">
+            <h2>A Letter For You 💌</h2>
+            <div class="envelope" onclick="openLetter()">
+                <div class="envelope-body"></div>
+                <div class="envelope-flap"></div>
+                <p>Open Letter</p>
+            </div>
+            <div id="letterContent" class="letter-content hidden">
+                <div class="letter-paper">
+                    <p class="letter-text">Dear Fariha,</p>
+                    <p class="letter-text">On this special day, I want you to know how much you mean to me. Your smile brightens my darkest days, your presence brings peace to my soul, and your love fills my heart with endless joy.</p>
+                    <p class="letter-text">You are not just beautiful on the outside, but your heart is pure gold. Every moment spent with you is a treasure I'll cherish forever.</p>
+                    <p class="letter-text">Happy Birthday to the most wonderful person I know. May all your dreams come true, and may your life be filled with endless happiness and beautiful memories.</p>
+                    <p class="letter-signature">With all my love,<br>Your Special Someone ❤️</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Grand Surprise -->
+        <section class="finale-section">
+            <canvas id="fireworksCanvas"></canvas>
+            <div class="finale-content">
+                <h1 class="finale-title">Happy Birthday Fariha ❤️</h1>
+                <p class="finale-text-1">You deserve endless happiness,</p>
+                <p class="finale-text-2">beautiful memories, and all the success in the world.</p>
+                <p class="finale-text-3">Thank you for being you.</p>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
 </body>
 </html>
