@@ -1,0 +1,34 @@
+name: Build Site
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+
+    - name: Create build directory
+      run: mkdir -p build
+
+    - name: Copy files to build directory
+      run: |
+        cp index.html build/
+        if [ -f "style.css" ]; then cp style.css build/; fi
+        if [ -f "script.js" ]; then cp script.js build/; fi
+
+    - name: List build contents
+      run: ls -la build/
+
+    - name: Upload build artifacts
+      uses: actions/upload-artifact@v4
+      with:
+        name: site-build
+        path: build/
+        retention-days: 30
